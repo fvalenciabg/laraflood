@@ -1,0 +1,35 @@
+{
+  "name": "vincendev/laraflood",
+  "description": "Flood protection for laravel 5",
+  "license": "GPLv2",
+  "type": "",
+  "keywords": ["laravel", "flood", "spam", "antiflood", "security", "antispam"],
+  "authors": [
+    {
+        "name": "Vincen",
+        "email": "vincen.prs@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.6",
+    "laravel/framework": ">=5.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Vincendev\\Laraflood\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+        "providers": [
+            "Vincendev\\Laraflood\\LarafloodServiceProvider"
+        ],
+        "aliases": {
+            "Laraflood": "Vincendev\\Laraflood\\Facade\\Laraflood"
+        }
+    }
+},
+"minimum-stability": "dev",
+"prefer-stable": true
+
+}
