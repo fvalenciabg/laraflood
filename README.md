@@ -144,7 +144,7 @@ public function incrementPostViews()
 		$action = "post-visit:" . $post->id; // Post unique ID
 		$visitsPerUser = 1;
 		$minutes = 1440; // 24Hours
-        if(Laraflood::onlyCheck('ip', $action, $visitsPerUser)){
+        if(Laraflood::checkOnly('ip', $action, $visitsPerUser)){
 			/**
 			* Increment post views
 			* Your code here..
