@@ -83,7 +83,6 @@ class Laraflood
         $now = Carbon::now();
         $expiration = Carbon::parse(\Cache::get( $key )['expiration']);
 
-        
         if($expiration->diffInSeconds($now) > 60 ){
             if($expiration->diffInMinutes($now) > 60 ){
                 return $expiration->diffInHours($now) . ' hours';
