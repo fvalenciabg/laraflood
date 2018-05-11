@@ -66,8 +66,12 @@ class Laraflood
         }
     }
 
-        // 00:00:00
-
+    /**
+     * Gets the time left from the cache
+     *
+     * @param     $identity
+     * @param     $action
+     */
     public function timeLeft( $identity = 'ip', $action = 'default')
     {
         if( $identity == 'ip' ) $identity = $this->getrealip();
