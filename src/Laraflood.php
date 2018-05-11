@@ -124,4 +124,17 @@ class Laraflood
     }
 
 
+    /**
+     * Forget an item from the cache to ignore ir¡t
+     *
+     * @param     $identity
+     * @param     $action
+     */
+    public function clear($identity = 'ip', $action = 'default'){
+        if( $identity == 'ip' ) $identity = $this->getrealip();
+        $key = 'lf:'.$identity.':'.$action;
+        Cache::forget($key);
+        return true;
+    }
+
 }
