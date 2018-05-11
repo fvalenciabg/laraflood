@@ -66,8 +66,12 @@ class Laraflood
         }
     }
 
-        // 00:00:00
-
+    /**
+     * Gets the time left from the cache
+     *
+     * @param     $identity
+     * @param     $action
+     */
     public function timeLeft( $identity = 'ip', $action = 'default')
     {
         if( $identity == 'ip' ) $identity = $this->getrealip();
@@ -79,7 +83,6 @@ class Laraflood
         $now = Carbon::now();
         $expiration = Carbon::parse(\Cache::get( $key )['expiration']);
 
-        
         if($expiration->diffInSeconds($now) > 60 ){
             if($expiration->diffInMinutes($now) > 60 ){
                 return $expiration->diffInHours($now) . ' hours';
@@ -89,38 +92,49 @@ class Laraflood
         }else{
             return $expiration->diffInSeconds($now) . ' seconds';
         }
-
-
-
     }
 
-
-
-
-
-
-
-
+    /**
+     * Gets the cache item
+     *
+     * @param     $identity
+     * @param     $action
+     */
     public function get($identity = 'ip', $action = 'default'){
         if( $identity == 'ip' ) $identity = $this->getrealip();
         $key = 'lf:'.$identity.':'.$action;
         return \Cache::get($key);
 
     }
-
     
-    
+    /**
+     * Get client real ip
+     *
+     */
     private function getrealip()
     {
-                if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-                    $ip = $_SERVER['HTTP_CLIENT_IP'];
-                } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-                    $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-                } else {
-                    $ip = $_SERVER['REMOTE_ADDR'];
-                }
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
         return $ip;
     }
 
+
+    /**
+     * Forget an item from the cache to ignore ir¡t
+     *
+     * @param     $identity
+     * @param     $action
+     */
+    public function clear($identity = 'ip', $action = 'default'){
+        if( $identity == 'ip' ) $identity = $this->getrealip();
+        $key = 'lf:'.$identity.':'.$action;
+        Cache::forget($key);
+        return true;
+    }
 
 }
