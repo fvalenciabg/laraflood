@@ -92,36 +92,34 @@ class Laraflood
         }else{
             return $expiration->diffInSeconds($now) . ' seconds';
         }
-
-
-
     }
 
-
-
-
-
-
-
-
+    /**
+     * Gets the cache item
+     *
+     * @param     $identity
+     * @param     $action
+     */
     public function get($identity = 'ip', $action = 'default'){
         if( $identity == 'ip' ) $identity = $this->getrealip();
         $key = 'lf:'.$identity.':'.$action;
         return \Cache::get($key);
 
     }
-
     
-    
+    /**
+     * Get client real ip
+     *
+     */
     private function getrealip()
     {
-                if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-                    $ip = $_SERVER['HTTP_CLIENT_IP'];
-                } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-                    $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-                } else {
-                    $ip = $_SERVER['REMOTE_ADDR'];
-                }
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
         return $ip;
     }
 
