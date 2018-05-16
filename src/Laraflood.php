@@ -133,7 +133,7 @@ class Laraflood
     public function clear($identity = 'ip', $action = 'default'){
         if( $identity == 'ip' ) $identity = $this->getrealip();
         $key = 'lf:'.$identity.':'.$action;
-        Cache::forget($key);
+        \Cache::forget($key);
         return true;
     }
 
