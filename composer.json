@@ -1,7 +1,7 @@
 {
   "name": "vincendev/laraflood",
   "description": "Flood protection for laravel 5",
-  "license": "GPLv2",
+  "license": "MIT",
   "type": "",
   "keywords": ["laravel", "flood", "spam", "antiflood", "security", "antispam"],
   "authors": [
